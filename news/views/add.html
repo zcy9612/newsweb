@@ -1,0 +1,60 @@
+<div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="container">
+            <div class="queryResule">
+                <h2>添加信息</h2>
+                <div class="back">
+                    <a href="/Article/ShowArticle">返回首页</a>
+                </div>
+                <form action="/Article/AddArticle" method="post" name="addForm" enctype="multipart/form-data">
+                    <div class="top">
+                        <div class="left">
+                            <p>
+                                <span>标题：</span>
+                                <span>
+                        <input type="text" name="title" class="input_text" tabindex="1" onfocus="if(this.placeholder=='姓名'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='姓名';this.className ='input_text'}" accesskey="n" type="text" placeholder="标题" size="25" autocomplete="off">
+                      </span>
+                            </p>
+                            <p class="form-group">
+                                <span>文章类型：</span>
+                                <span>
+                          <select class="form-control" name="select">
+                              {{range .types}}
+                          <option>{{.TypeName}}</option>
+                              {{end}}
+                          </select>
+                      </span>
+                            </p>
+                            <p>
+                                <span>内容：</span>
+                                <span>
+                                     <input type="text" name="content" class="input_text" tabindex="1" onfocus="if(this.placeholder=='籍贯'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='内容';this.className ='input_text'}" accesskey="n" type="text" placeholder="内容" size="25" autocomplete="off">
+                                </span>
+                            </p>
+                            <p>
+                                </span>请上传照片(120*160px)</span>
+                                <span>
+                           <input type="file" name="upload" value="上传照片" >
+                      </span>
+                            </p>
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="photo" id="photo" value=""/>
+                    <button type="button" name="button" class="btn">添加新闻</button>
+                </form>
+            </div>
+            <!-- data-backdrop="false"去除遮罩层  -->
+            <div class="modal fade bd-example-modal-sm"  id="myModal" role="dialog" data-backdrop="false"  aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <p class="text-center mb-0" style="height:42px;line-height:42px;margin:0;">
+                            <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i>
+                            请输入新闻所必需的相关信息
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

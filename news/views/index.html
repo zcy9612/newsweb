@@ -1,0 +1,94 @@
+<div class="layui-body">
+        <!-- 内容主体区域 -->
+
+        <div class="container">
+            <div class="queryResule">
+                <h2>新闻发布</h2>
+                <form action="/Article/ShowArticle" class="layui-form" method="get" name="addForm" id="form" enctype="multipart/form-data">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">请选择新闻分类</label>
+                                <span>
+                                    <select type="select" class="form-control" name="select">
+                                        {{range .types}}
+                                        <option>{{.TypeName}}</option>
+                                        {{end}}
+                                    </select>
+                                </span>
+                            </p>
+                    </div>
+                    <input type="hidden" name="photo" id="photo" value=""/>
+                    <button type="button" name="button" class="layui-btn">确定</button>
+                </form>
+
+
+
+            </div>
+        </div>
+        <div style="padding: 15px;">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>内容</th>
+                    <th>发布时间</th>
+                    <th>阅读量</th>
+                    <th>删除</th>
+                    <th>编辑</th>
+                    <th>新闻类型</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range .articles}}
+                <tr>
+                    <th>{{.Title}}</th>
+                    <!--                               将本页获取到的Id2传到Content控制器-->
+                    <th ><a class="layui-btn" href="/Content?id={{.Id2}}">查看详情</a></th>
+                    <th>{{.Time.Format "2006-01-02 15:04:05"}}</th>
+                    <th>{{.Count}}</th>
+                    <th ><a class="layui-btn layui-btn-danger" href="/Article/DeleteArticle?id={{.Id2}}">删除</a></th>
+                    <th ><a class="layui-btn layui-btn-normal" href="/Article/UpdateArticle?id={{.Id2}}">编辑</a></th>
+                    <th>{{.AType.TypeName}}</th>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+<div class="layui-footer">
+        <!-- 底部固定区域 -->
+        <div class="layui-row">
+            <div class="layui-col-md5">
+                <p> </p>
+            </div>
+            <div class="layui-btn-group">
+                        <a type="button" class="layui-btn layui-btn-sm" href="/Article/ShowArticle?pageIndex=1&select={{.typeName}}">
+                            <i class="layui-icon" >首页</i>
+                        </a>
+                        {{if compare .FirstPage true}}
+                             <a>上一页</a>
+                        {{else}}
+                        <a  type="button" class="layui-btn layui-btn-sm" href="/Article/ShowArticle?pageIndex={{.pageIndex | ShowPrePage}}&select={{.typeName}}">
+                            <i class="layui-icon layui-icon-left">上一页</i>
+                        </a>
+                        {{end}}
+                        {{if compare .EndPage true}}
+                            <a>下一页</a>
+                        {{else}}
+                        <a type="button" class="layui-btn layui-btn-sm" href="/Article/ShowArticle?pageIndex={{.pageIndex | ShowNextPage}}&select={{.typeName}}">
+                            <i class="layui-icon layui-icon-right">下一页</i>
+                        </a>
+                        {{end}}
+                        <a type="button" class="layui-btn layui-btn-sm" href="/Article/ShowArticle?pageIndex={{.pageCount}}&select={{.typeName}}">
+                            <i class="layui-icon">末页</i>
+                        </a>
+
+                    </div>
+            <a class="">共{{.count}}条记录/共{{.pageCount}}页/当前{{.pageIndex}}页</a>
+     </div>
+</div>

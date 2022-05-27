@@ -1,0 +1,65 @@
+<div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="container">
+            <div class="queryResule">
+                <h2>添加信息</h2>
+                <div class="back">
+                    <a href="/Article/ShowArticle">返回首页</a>
+                </div>
+
+<!--                    提供id给后端 可以使用隐含域
+     <input name="id" value="{{.article.Id2}}" hidden="hidden">     方法为post   上传文件设置enctype="multipart/form-data-->
+                <form action="/Article/UpdateArticle?id={{.article.Id2}}" method="post" name="addForm" enctype="multipart/form-data">
+                    <div class="top">
+                        <div class="left">
+                            <p>
+                                <span>标题：</span>
+                                <span>
+                        <input type="text" name="title" class="input_text" value="{{.article.Title}}" >
+                      </span>
+                            </p>
+                            <p class="form-group">
+                                <span>文章类型：</span>
+                                <span>
+                          <select class="form-control" name="select">
+                          <option>体育新闻</option>
+                          <option>财经新闻</option>
+                          <option>科技新闻</option>
+                      </select>
+                      </span>
+                            </p>
+                            <p>
+                                <span>内容：</span>
+                                <span>
+                        <input type="text" name="content" class="input_text" value="{{.article.Content}}">
+                      </span>
+                            </p>
+                            <p>
+                                </span>请上传照片(120*160px)</span>
+                                <img src="{{.article.Img}}">
+                                <span>
+                           <input type="file" name="upload" value="上传照片" >
+                      </span>
+                            </p>
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="photo" id="photo" value=""/>
+                    <button type="button" name="button" class="btn">添加</button>
+                </form>
+            </div>
+            <!-- data-backdrop="false"去除遮罩层  -->
+            <div class="modal fade bd-example-modal-sm"  id="myModal" role="dialog" data-backdrop="false"  aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <p class="text-center mb-0" style="height:42px;line-height:42px;margin:0;">
+                            <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i>
+                            请输入新闻所必需的相关信息
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+

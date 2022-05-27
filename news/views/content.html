@@ -1,0 +1,50 @@
+<div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="layui-card">
+            <div class="layui-card-header">文章标题</div>
+            <div class="layui-card-body">
+                {{.article.Title}}
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">文章类型</div>
+            <div class="layui-card-body">
+                {{.Atype.TypeName}}
+            </div>
+        </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">创建时间</div>
+        <div class="layui-card-body">
+            {{.article.Time}}
+        </div>
+    </div>
+        <div class="layui-card">
+            <div class="layui-card-header">阅读人数</div>
+                <div class="layui-card-body">
+                    {{.article.Count}}
+                 </div>
+            <div class="layui-card-header">最近浏览:</div>
+            <div class="layui-card-body">
+                {{range .users}}
+                {{.UserName}} |
+                {{end}}
+            </div>
+        </div>
+    <div class="layui-card">
+        <div class="layui-card-header">文章内容</div>
+        <div class="layui-card-body">
+            {{.article.Content}}
+            <img src="{{.article.Img}}">
+        </div>
+    </div>
+
+
+    </div>
+<div class="layui-footer">
+        <!-- 底部固定区域 -->
+        <div class="layui-col-md4 layui-col-md-offset4">
+            <a href="/Article/ShowArticle" class="layui-btn">返回</a>
+        </div>
+    </div>
+
